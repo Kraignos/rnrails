@@ -28,61 +28,59 @@ program
   .action((name, options) => {
     const withRedux = options.redux || false;
     const withNativeCode = options.native || false;
-      console.log(`Creating new React Native Project ${successMessage(name)}...`);
-      initializer.init(name, withNativeCode)
-        .then(() => {
-          console.log(successMessage('Creating source code structure...'));
-          process.chdir(`./${name}`);
-          fs.writeFile('index.ios.js', "import './src/app';", err => {
-            if (err) throw new Error(err);
-          });
-          fs.writeFile('index.android.js', "import './src/app';", err => {
-            if (err) throw new Error(err);
-          });
-          fs.mkdirSync('./src');
-          process.chdir('./src');
-          fs.writeFile('app.js', '', err => {
-            if (err) throw new Error(err);
-          });
-          fs.mkdirSync('./api');
-          fs.mkdirSync('./assets');
-          fs.mkdirSync('./components');
-          fs.mkdirSync('./domain');
-          fs.mkdirSync('./i18n');
-          fs.mkdirSync('./screens');
-          fs.mkdirSync('./stores');
-          // We go back to the root
-          process.chdir('..');
-        })
-        .then(() => {
-          console.log('Setting up the environment...');
-          return initializer.configureEnvironment();
-        })
-        .then(() => console.log(successMessage('Environment is set up!')))
-        .then(() => {
-          console.log('Generating home screen...');
-          return screenInitializer.init('Home');
-        })
-        .then(() => {
-          console.log('Generating settings screen...');
-          return screenInitializer.init('Settings');
-        })
-        .then(() => console.log(successMessage('Screens are set up!')))
-        .then(() => {
-          console.log(successMessage('Installing react-navigation...'));
-          return initializer.installDependencies(name, withNativeCode);
-        })
-        .then(() => {
-          if (withRedux) {
-            console.log(successMessage('Installing redux...'));
-            return initializer.installRedux()
-              .then(() => initializer.configureRedux());
-          }
-          return '';
-        })
-        .then(() => console.log(successMessage('react-navigation is set up!')))
-        .then(() => console.log(`🎉🎉  React Native Project ${successMessage(name)} has been created...`))
-        .catch(exitOnError);
+    const withOrWithout = withNativeCode ? 'with' : 'without';
+    console.log(`Creating new React Native Project ${successMessage(name)} ${withOrWithout} native code...`);
+    initializer.init(name, withNativeCode)
+      .then(() => {
+        console.log(successMessage('Creating source code structure...'));
+        process.chdir(`./${name}`);
+        fs.writeFile('index.js', "import './src/app';", err => {
+          if (err) throw new Error(err);
+        });
+        fs.mkdirSync('./src');
+        process.chdir('./src');
+        fs.writeFile('app.js', '', err => {
+          if (err) throw new Error(err);
+        });
+        fs.mkdirSync('./api');
+        fs.mkdirSync('./assets');
+        fs.mkdirSync('./components');
+        fs.mkdirSync('./domain');
+        fs.mkdirSync('./i18n');
+        fs.mkdirSync('./screens');
+        fs.mkdirSync('./stores');
+        // We go back to the root
+        process.chdir('..');
+      })
+      .then(() => {
+        console.log('Setting up the environment...');
+        return initializer.configureEnvironment();
+      })
+      .then(() => console.log(successMessage('Environment is set up!')))
+      .then(() => {
+        console.log('Generating home screen...');
+        return screenInitializer.init('Home');
+      })
+      .then(() => {
+        console.log('Generating settings screen...');
+        return screenInitializer.init('Settings');
+      })
+      .then(() => console.log(successMessage('Screens are set up!')))
+      .then(() => {
+        console.log(successMessage('Installing react-navigation...'));
+        return initializer.installDependencies(name, withNativeCode);
+      })
+      .then(() => {
+        if (withRedux) {
+          console.log(successMessage('Installing redux...'));
+          return initializer.installRedux()
+            .then(() => initializer.configureRedux());
+        }
+        return '';
+      })
+      .then(() => console.log(successMessage('react-navigation is set up!')))
+      .then(() => console.log(`🎉🎉  React Native Project ${successMessage(name)} has been created...`))
+      .catch(exitOnError);
   });
 
   program
