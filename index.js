@@ -9,7 +9,7 @@ const screenInitializer = require('./lib/init-screen');
 const Promise = require('bluebird');
 const fs = require('fs');
 
-const greenMessage = (message) => {
+const successMessage = (message) => {
   return chalk.bold.green(message);
 }
 
@@ -70,7 +70,7 @@ program
         .then(() => console.log(successMessage('Screens are set up!')))
         .then(() => {
           console.log(successMessage('Installing react-navigation...'));
-          return initializer.installDependencies(name);
+          return initializer.installDependencies(name, withNativeCode);
         })
         .then(() => {
           if (withRedux) {
