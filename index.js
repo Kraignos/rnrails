@@ -79,6 +79,9 @@ program
         return '';
       })
       .then(() => console.log(successMessage('react-navigation is set up!')))
+      .then(() => console.log(successMessage('Installing chai enzyme sinon for testing...')))
+      .then(() => initializer.installDevDependencies())
+      .then(() => console.log(successMessage('Tests are all set up with chai & enzyme!')))
       .then(() => console.log(`🎉🎉  React Native Project ${successMessage(name)} has been created...`))
       .catch(exitOnError);
   });
