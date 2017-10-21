@@ -1,6 +1,7 @@
 # rnrails [WIP]
 React Native on Rails is an opinionated CLI for React Native. It generates and configures a functional React Native project for you so that you just take care about the business of your app.
 
+# Purpose
 We all love React Native but setting a project can really be a blocking issue:
 * which dependencies to chose for navigation, state, etc.
 * how to structure your app
@@ -72,3 +73,6 @@ rnrails component NAME
 Creates a new file *NAME.component.js* in *src/components*
 
 TODO: *add test file*
+
+### Missing
+* Add i18n dependency and configure it
