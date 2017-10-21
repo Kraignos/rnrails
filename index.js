@@ -14,7 +14,7 @@ const successMessage = (message) => {
 }
 
 var exitOnError = (err) => {
-  console.error(chalk.bold.red('Error occurred'), err);
+  console.error(chalk.bold.red('An error occurred:'), err);
   process.exit(1);
 }
 
