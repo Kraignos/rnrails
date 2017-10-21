@@ -24,9 +24,8 @@ program
 program
   .command('new <name>')
   .option("-n, --native [native]", "Building the project with Native Code")
-  .option("-r, --redux [redux]", "Setting up with Redux integration")
   .action((name, options) => {
-    const withRedux = options.redux || false;
+    const withRedux = true;
     const withNativeCode = options.native || false;
     const withOrWithout = withNativeCode ? 'with' : 'without';
     console.log(`Creating new React Native Project ${successMessage(name)} ${withOrWithout} native code...`);
