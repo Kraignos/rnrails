@@ -48,7 +48,6 @@ program
         fs.mkdirSync('./domain');
         fs.mkdirSync('./i18n');
         fs.mkdirSync('./screens');
-        fs.mkdirSync('./stores');
         // We go back to the root
         process.chdir('..');
       })
