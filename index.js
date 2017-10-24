@@ -9,9 +9,7 @@ const screenInitializer = require('./lib/init-screen');
 const Promise = require('bluebird');
 const fs = require('fs');
 
-const successMessage = (message) => {
-  return chalk.bold.green(message);
-}
+const successMessage = chalk.bold.green;
 
 var exitOnError = (err) => {
   console.error(chalk.bold.red('An error occurred:'), err);
