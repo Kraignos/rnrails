@@ -1,6 +1,6 @@
 {
   "name": "rnrails",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React-Native on Rails",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "url": "git+https://github.com/Kraignos/rnrails.git"
   },
   "keywords": [
+    "mobile",
     "react",
     "react-native"
   ],
